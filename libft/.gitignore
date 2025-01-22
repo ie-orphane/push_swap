@@ -1,0 +1,6 @@
+*
+!srcs/
+!srcs/ft_*.c
+!.gitignore
+!libft.h
+!Makefile
