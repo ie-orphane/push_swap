@@ -14,7 +14,7 @@ BONUS = checker
 
 SRCS_DIR = srcs
 
-_SRCS = main.c
+_SRCS = stack.c main.c actions.c
 SRCS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 # _SRCS_BONUS =
