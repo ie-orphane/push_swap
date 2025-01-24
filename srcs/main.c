@@ -6,23 +6,24 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 13:51:39 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:26:38 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-#include <stdio.h>
 
-void	ft_stkshow(t_stack *stk)
+void	stk_show(t_stack *stk)
 {
 	t_stack	*node;
 
 	node = stk;
 	while (node)
 	{
-		printf("%p %14p %d\n", node, node->next, node->value);
+		// ft_printf("%p %14p %d\n", node, node->next, node->value);
+		ft_printf("%d ", node->value);
 		node = node->next;
 	}
+	ft_printf("\n");
 }
 
 int	main(int ac, char **av)
@@ -33,26 +34,21 @@ int	main(int ac, char **av)
 	stk = NULL;
 	c = ac;
 	while (--c)
-		ft_stkpush(&stk, ft_atoi(av[c]));
-	ft_stkshow(stk);
-	if (stk->value > stk->next->value
-		&& stk->next->value < stk->next->next->value)
+		stk_push(&stk, ft_atoi(av[c]));
+	stk_show(stk);
+	while (!stk_issorted(stk))
 	{
-		ft_stkrotate(&stk);
-		printf("ra\n");
+		if (stk->value > stk->next->value)
+		{
+			if (stk->value < stk->next->next->value)
+				stk_swap(&stk, STACK_A);
+			else
+				stk_rotate(&stk, STACK_A);
+		}
+		else
+			stk_rrotate(&stk, STACK_A);
 	}
-	else if (stk->value < stk->next->value
-		&& stk->next->next->value < stk->value)
-	{
-		ft_stkrrotate(&stk);
-		printf("rra\n");
-	}
-	else if (stk->value > stk->next->value)
-	{
-		ft_stkswap(&stk);
-		printf("sa\n");
-	}
-	ft_stkshow(stk);
-	ft_stkclear(&stk);
+	stk_show(stk);
+	stk_clear(&stk);
 	return (0);
 }

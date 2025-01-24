@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 13:50:49 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:46:14 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include "libft.h"
 
+typedef enum e_stack
+{
+	STACK_A = 'a',
+	STACK_B = 'b',
+}					t_type;
+
 typedef struct s_stack
 {
 	int				value;
@@ -22,10 +28,12 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-void				ft_stkpush(t_stack **stk, int value);
-void				ft_stkclear(t_stack **stk);
-void				ft_stkrotate(t_stack **stk);
-void				ft_stkrrotate(t_stack **stk);
-void				ft_stkswap(t_stack **stk);
+void				stk_push(t_stack **stk, int value);
+void				stk_clear(t_stack **stk);
+bool				stk_issorted(t_stack *stk);
+
+void				stk_rotate(t_stack **stk, t_type type);
+void				stk_rrotate(t_stack **stk, t_type type);
+void				stk_swap(t_stack **stk, t_type type);
 
 #endif // MAIN_H

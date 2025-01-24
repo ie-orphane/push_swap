@@ -6,13 +6,13 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:47:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 13:50:15 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:45:40 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	ft_stkrotate(t_stack **stk)
+void	stk_rotate(t_stack **stk, t_type type)
 {
 	t_stack	*top;
 	t_stack	*middle;
@@ -27,9 +27,10 @@ void	ft_stkrotate(t_stack **stk)
 	(*stk)->next = bottom;
 	(*stk)->next->next = top;
 	(*stk)->next->next->next = NULL;
+	ft_printf("r%c\n", type);
 }
 
-void	ft_stkrrotate(t_stack **stk)
+void	stk_rrotate(t_stack **stk, t_type type)
 {
 	t_stack	*top;
 	t_stack	*middle;
@@ -44,13 +45,14 @@ void	ft_stkrrotate(t_stack **stk)
 	(*stk)->next = top;
 	(*stk)->next->next = middle;
 	(*stk)->next->next->next = NULL;
+	ft_printf("rr%c\n", type);
 }
 
-void	ft_stkswap(t_stack **stk)
+void	stk_swap(t_stack **stk, t_type type)
 {
-	t_stack *top;
-	t_stack *middle;
-	t_stack *bottom;
+	t_stack	*top;
+	t_stack	*middle;
+	t_stack	*bottom;
 
 	if (!stk || !*stk)
 		return ;
@@ -61,4 +63,5 @@ void	ft_stkswap(t_stack **stk)
 	(*stk)->next = top;
 	(*stk)->next->next = bottom;
 	(*stk)->next->next->next = NULL;
+	ft_printf("s%c\n", type);
 }
