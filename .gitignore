@@ -2,5 +2,5 @@
 *.o
 test*
 push_swap
-checker
+checker*
 run

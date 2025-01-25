@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 17:46:14 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:09:57 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAIN_H
 
 # include "libft.h"
+# include "ansi.h"
 
 typedef enum e_stack
 {
