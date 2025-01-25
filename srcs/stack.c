@@ -6,13 +6,13 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:11:54 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 17:46:05 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/01/25 22:15:27 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	stk_push(t_stack **stk, int value)
+void	stk_append(t_stack **stk, int value)
 {
 	t_stack	*new;
 
@@ -21,7 +21,21 @@ void	stk_push(t_stack **stk, int value)
 	new = malloc(sizeof(t_stack));
 	new->value = value;
 	new->next = *stk;
+	new->prev = NULL;
+	if (*stk)
+		(*stk)->prev = new;
 	*stk = new;
+}
+
+void	stk_pop(t_stack **stk)
+{
+	t_stack	*tmp;
+
+	if (!stk)
+		return ;
+	tmp = (*stk)->next;
+	free(*stk);
+	*stk = tmp;
 }
 
 bool	stk_issorted(t_stack *stk)
@@ -51,4 +65,59 @@ void	stk_clear(t_stack **stk)
 		}
 		*stk = NULL;
 	}
+}
+
+int	stk_max(t_stack *stk)
+{
+	int	max;
+
+	max = stk->value;
+	while (stk)
+	{
+		if (stk->value > max)
+			max = stk->value;
+		stk = stk->next;
+	}
+	return (max);
+}
+
+int	stk_min(t_stack *stk)
+{
+	int	min;
+
+	min = stk->value;
+	while (stk)
+	{
+		if (stk->value < min)
+			min = stk->value;
+		stk = stk->next;
+	}
+	return (min);
+}
+
+int	stk_index(t_stack *stk, int value)
+{
+	int	i;
+
+	i = 0;
+	while (stk)
+	{
+		if (stk->value == value)
+			return (i++);
+		stk = stk->next;
+	}
+	return (-1);
+}
+
+int	stk_size(t_stack *stk)
+{
+	int	i;
+
+	i = 0;
+	while (stk)
+	{
+		i++;
+		stk = stk->next;
+	}
+	return (i);
 }
