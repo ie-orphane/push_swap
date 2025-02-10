@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:11:54 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/25 22:15:27 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/10 08:50:35 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ int	stk_index(t_stack *stk, int value)
 	while (stk)
 	{
 		if (stk->value == value)
-			return (i++);
+			return (i);
 		stk = stk->next;
+		i++;
 	}
 	return (-1);
 }

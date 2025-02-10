@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/25 22:55:07 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:03:45 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,14 @@ int	main(int ac, char **av)
 {
 	int		c;
 	t_stack	*stk;
-	t_stack	*tmp;
+	// t_stack	*tmp;
 
 	stk = NULL;
-	tmp = NULL;
+	// tmp = NULL;
 	c = ac;
 	while (--c)
 		stk_append(&stk, ft_atoi(av[c]));
-	// if (!stk_issorted(stk))
-	// {
-	// 	if ((ac - 1) == 3)
-	// 		sort_three(&stk);
-	// 	else if ((ac - 1) <= 5)
-	// 		sort_five(&stk);
-	// }
-	// stk_result(stk);
+	sort_five(&stk);
 	stk_clear(&stk);
 	return (0);
 }
