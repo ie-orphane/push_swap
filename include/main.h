@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/25 21:37:06 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:32:18 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
+typedef struct s_vars
+{
+	char			**arr;
+	t_stack			*stk;
+	int				ac;
+	char			**av;
+}					t_vars;
+
 void				stk_append(t_stack **stk, int value);
 void				stk_clear(t_stack **stk);
 bool				stk_issorted(t_stack *stk);
@@ -45,6 +53,9 @@ void				stk_rotate(t_stack **stk, t_type type);
 void				stk_rrotate(t_stack **stk, t_type type);
 void				stk_swap(t_stack **stk, t_type type);
 void				stk_push(t_stack **stk1, t_stack **stk2, t_type type);
+
+bool				ft_isnumber(char *str);
+void				ft_strs_free(char ***strs);
 
 void				sort_three(t_stack **stk_ptr);
 void				sort_five(t_stack **stk);
