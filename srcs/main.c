@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/10 11:33:37 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:44:52 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,24 @@ void	ft_parse(t_vars *vars)
 int	main(int ac, char **av)
 {
 	t_vars	vars;
+	t_arr	*arr;
 
 	ft_bzero(&vars, sizeof(vars));
 	vars.ac = ac;
 	vars.av = av;
 	ft_parse(&vars);
-	sort_five(&vars.stk);
-	stk_clear(&vars.stk);
-	return (0);
+	if (!vars.stk || stk_issorted(vars.stk))
+		ft_exit(&vars, 0);
+	if (vars.ac - 1 <= 5)
+		sort_five(&vars.stk);
+	else
+	{
+		arr = arr_fromstk(vars.stk);
+		arr_sort(arr);
+		arr_show(arr);
+		arr_clear(&arr);
+	}
+	// else
+	// 	sort_large(&vars.stk);
+	ft_exit(&vars, 0);
 }

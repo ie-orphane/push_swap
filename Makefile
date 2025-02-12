@@ -14,7 +14,9 @@ BONUS = checker
 
 SRCS_DIR = srcs
 
-_SRCS = stack.c main.c actions.c sort.c utils.c
+_SRCS = array_1.c array_2.c array_3.c array_4.c \
+		stack.c actions.c sort.c utils.c int.c \
+		main.c
 SRCS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 # _SRCS_BONUS =
@@ -26,7 +28,7 @@ OBJS = $(addprefix $(OBJS_DIR)/,$(_SRCS:.c=.o))
 
 
 INCLUDE_DIR = include
-_INCLUDES = main.h
+_INCLUDES = main.h ansi.h array.h int.h stack.h
 INCLUDES = $(addprefix $(INCLUDE_DIR)/,$(_INCLUDES))
 
 LIB = libft
@@ -39,6 +41,7 @@ IFLAGS =  -I$(INCLUDE_DIR) -I$(LIB)
 LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB))
 
 DEV_NULL = 1> /dev/null
+NO_PRINT = --no-print-directory
 
 
 all : $(NAME)
@@ -77,4 +80,21 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re $(LIB)
+run :
+	@$(MAKE) $(NO_PRINT) $(DEV_NULL)
+	@./$(NAME) $(ARGS)
+
+count :
+	@$(MAKE) $(NO_PRINT) run | wc -l
+
+check :
+	@$(MAKE) $(NO_PRINT) run | ./checker_linux $(ARGS)
+
+
+exe :
+	@$(MAKE) $(NO_PRINT) run
+	@echo "---"
+	@$(MAKE) $(NO_PRINT) count
+	@$(MAKE) $(NO_PRINT) check
+
+.PHONY : all clean fclean re $(LIB) run count check exe

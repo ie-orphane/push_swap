@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   int.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:40:01 by ielyatim         ###   ########.fr       */
+/*   Created: 2025/02/12 16:11:06 by ielyatim          #+#    #+#             */
+/*   Updated: 2025/02/12 16:12:32 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef INT_H
+# define INT_H
 
-# include "ansi.h"
-# include "array.h"
 # include "libft.h"
-# include "stack.h"
 
-typedef struct s_vars
-{
-	char	**arr;
-	t_stack	*stk;
-	int		ac;
-	char	**av;
-}			t_vars;
+bool	int_ispos(int num);
+bool	int_isneg(int num);
+size_t	int_len(int num);
 
-bool		ft_isnumber(char *str);
-void		ft_strs_free(char ***strs);
-
-void		sort_three(t_stack **stk_ptr);
-void		sort_five(t_stack **stk);
-
-#endif // MAIN_H
+#endif // INT_H

@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   int.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:40:01 by ielyatim         ###   ########.fr       */
+/*   Created: 2025/02/12 16:10:21 by ielyatim          #+#    #+#             */
+/*   Updated: 2025/02/12 16:12:42 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#include "int.h"
 
-# include "ansi.h"
-# include "array.h"
-# include "libft.h"
-# include "stack.h"
-
-typedef struct s_vars
+bool	int_ispos(int num)
 {
-	char	**arr;
-	t_stack	*stk;
-	int		ac;
-	char	**av;
-}			t_vars;
+	return (num >= 0);
+}
 
-bool		ft_isnumber(char *str);
-void		ft_strs_free(char ***strs);
+bool	int_isneg(int num)
+{
+	return (num < 0);
+}
 
-void		sort_three(t_stack **stk_ptr);
-void		sort_five(t_stack **stk);
+size_t	int_len(int num)
+{
+	size_t len;
 
-#endif // MAIN_H
+	len = 1;
+	while (true)
+	{
+		num /= 10;
+		if (num == 0)
+			break ;
+		len++;
+	}
+	return (len);
+}
