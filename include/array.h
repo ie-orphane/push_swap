@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:47:49 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:39:24 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:43:20 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ t_arr		*arr_cloneif(t_arr *_arr, bool (*cmp)(int));
 void		arr_sort(t_arr *arr);
 
 t_arr		*arr_fromstk(t_stack *stk);
+size_t		arr_index(t_arr *arr, int value);
 
 #endif // ARRAY_H

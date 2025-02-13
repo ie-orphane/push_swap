@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:45:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/10 09:45:15 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:35:48 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,71 @@ void	sort_five(t_stack **stk)
 		sort_three(stk);
 	while (stk_size(tmp) > 0)
 		stk_push(&tmp, stk, STACK_A);
+	stk_clear(&tmp);
+}
+
+static void	_update_range(size_t *start, size_t *end, size_t index, size_t size)
+{
+	if (index > (*end))
+		return ;
+	if ((*end) < size - 1)
+		(*end)++;
+	if ((*start) < (*end) - 1)
+		(*start)++;
+}
+
+static void	_sort_large(t_stack **stk, t_stack **tmp, size_t *end)
+{
+	t_arr	*arr;
+	size_t	start;
+	size_t	index;
+
+	arr = arr_fromstk(*stk);
+	arr_sort(arr);
+	start = 0;
+	*tmp = NULL;
+	while (*stk)
+	{
+		index = arr_index(arr, ((*stk)->value));
+		if (index < start)
+		{
+			stk_push(stk, tmp, STACK_B);
+			stk_rotate(tmp, STACK_B);
+		}
+		else if (index <= (*end))
+			stk_push(stk, tmp, STACK_B);
+		else
+			stk_rotate(stk, STACK_A);
+		_update_range(&start, end, index, arr->size);
+	}
+	arr_clear(&arr);
+}
+
+void	sort_large(t_stack **stk)
+{
+	t_stack	*tmp;
+	size_t	index;
+	size_t	size;
+	size_t	end;
+
+	end = 2;
+	_sort_large(stk, &tmp, &end);
+	while (tmp)
+	{
+		index = stk_index(tmp, stk_max(tmp));
+		size = stk_size(tmp);
+		if (index <= size / 2)
+		{
+			while (index--)
+				stk_rotate(&tmp, STACK_B);
+		}
+		else
+		{
+			index = size - index;
+			while (index--)
+				stk_rrotate(&tmp, STACK_B);
+		}
+		stk_push(&tmp, stk, STACK_A);
+	}
 	stk_clear(&tmp);
 }

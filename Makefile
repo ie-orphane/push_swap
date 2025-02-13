@@ -36,9 +36,9 @@ LIB = libft
 CC = cc
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -O3 # -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -O3
 IFLAGS =  -I$(INCLUDE_DIR) -I$(LIB)
-LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB))
+LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB)) # -fsanitize=address -g3
 
 DEV_NULL = 1> /dev/null
 NO_PRINT = --no-print-directory
@@ -90,11 +90,14 @@ count :
 check :
 	@$(MAKE) $(NO_PRINT) run | ./checker_linux $(ARGS)
 
-
 exe :
 	@$(MAKE) $(NO_PRINT) run
 	@echo "---"
 	@$(MAKE) $(NO_PRINT) count
 	@$(MAKE) $(NO_PRINT) check
+
+valgrind :
+	@$(MAKE) $(NO_PRINT) $(DEV_NULL)
+	@valgrind ./$(NAME) $(ARGS)
 
 .PHONY : all clean fclean re $(LIB) run count check exe

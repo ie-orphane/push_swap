@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:44:52 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:42:00 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,6 @@ void	stk_show(t_stack *stk)
 		node = node->next;
 	}
 	ft_printf("\n");
-}
-
-void	stk_summary(t_stack *stk)
-{
-	t_stack	*node;
-
-	node = stk;
-	while (node)
-	{
-		printf("%14p %14p %14p %d\n", node->prev, node, node->next,
-			node->value);
-		node = node->next;
-	}
-	ft_printf("\n");
-}
-
-void	stk_result(t_stack *stk)
-{
-	if (stk_issorted(stk))
-		ft_printf(B_GREEN "OK" R_GREEN ": ");
-	else
-		ft_printf(B_RED "KO" R_RED ": ");
-	stk_show(stk);
-	ft_printf(RESET);
 }
 
 void	ft_exit(t_vars *vars, int status)
@@ -91,7 +67,6 @@ void	ft_parse(t_vars *vars)
 int	main(int ac, char **av)
 {
 	t_vars	vars;
-	t_arr	*arr;
 
 	ft_bzero(&vars, sizeof(vars));
 	vars.ac = ac;
@@ -102,13 +77,6 @@ int	main(int ac, char **av)
 	if (vars.ac - 1 <= 5)
 		sort_five(&vars.stk);
 	else
-	{
-		arr = arr_fromstk(vars.stk);
-		arr_sort(arr);
-		arr_show(arr);
-		arr_clear(&arr);
-	}
-	// else
-	// 	sort_large(&vars.stk);
+		sort_large(&vars.stk);
 	ft_exit(&vars, 0);
 }
