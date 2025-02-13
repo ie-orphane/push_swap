@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.c                                            :+:      :+:    :+:   */
+/*   stack_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:11:54 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/10 08:50:35 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:51:00 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "stack.h"
 
 void	stk_append(t_stack **stk, int value)
 {
@@ -67,58 +67,15 @@ void	stk_clear(t_stack **stk)
 	}
 }
 
-int	stk_max(t_stack *stk)
+void	stk_show(t_stack *stk)
 {
-	int	max;
+	t_stack	*node;
 
-	max = stk->value;
-	while (stk)
+	node = stk;
+	while (node)
 	{
-		if (stk->value > max)
-			max = stk->value;
-		stk = stk->next;
+		ft_printf("%d ", node->value);
+		node = node->next;
 	}
-	return (max);
-}
-
-int	stk_min(t_stack *stk)
-{
-	int	min;
-
-	min = stk->value;
-	while (stk)
-	{
-		if (stk->value < min)
-			min = stk->value;
-		stk = stk->next;
-	}
-	return (min);
-}
-
-int	stk_index(t_stack *stk, int value)
-{
-	int	i;
-
-	i = 0;
-	while (stk)
-	{
-		if (stk->value == value)
-			return (i);
-		stk = stk->next;
-		i++;
-	}
-	return (-1);
-}
-
-int	stk_size(t_stack *stk)
-{
-	int	i;
-
-	i = 0;
-	while (stk)
-	{
-		i++;
-		stk = stk->next;
-	}
-	return (i);
+	ft_printf("\n");
 }

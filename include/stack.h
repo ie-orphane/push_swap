@@ -6,12 +6,14 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:38:21 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:39:58 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:50:47 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
+
+# include "libft.h"
 
 typedef enum e_stack
 {
@@ -27,16 +29,15 @@ typedef struct s_stack
 }					t_stack;
 
 void				stk_append(t_stack **stk, int value);
-void				stk_clear(t_stack **stk);
+void				stk_pop(t_stack **stk);
 bool				stk_issorted(t_stack *stk);
+void				stk_clear(t_stack **stk);
+void				stk_show(t_stack *stk);
+
 int					stk_max(t_stack *stk);
 int					stk_min(t_stack *stk);
-void				stk_pop(t_stack **stk);
 int					stk_index(t_stack *stk, int value);
 int					stk_size(t_stack *stk);
-
-void				stk_result(t_stack *stk);
-void				stk_show(t_stack *stk);
 
 void				stk_rotate(t_stack **stk, t_type type);
 void				stk_rrotate(t_stack **stk, t_type type);

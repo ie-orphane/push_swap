@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:10:21 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/12 16:12:42 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:45:28 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	int_isneg(int num)
 
 size_t	int_len(int num)
 {
-	size_t len;
+	size_t	len;
 
 	len = 1;
 	while (true)

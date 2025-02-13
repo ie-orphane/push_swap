@@ -6,24 +6,11 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:42:00 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 09:47:45 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
-
-void	stk_show(t_stack *stk)
-{
-	t_stack	*node;
-
-	node = stk;
-	while (node)
-	{
-		ft_printf("%d ", node->value);
-		node = node->next;
-	}
-	ft_printf("\n");
-}
 
 void	ft_exit(t_vars *vars, int status)
 {
@@ -55,7 +42,7 @@ void	ft_parse(t_vars *vars)
 		while (vars->arr[i])
 		{
 			if (!ft_isnumber(vars->arr[i] + (vars->arr[i][0] == '+'
-						|| vars->arr[i][0] == '-')))
+					|| vars->arr[i][0] == '-')))
 				ft_exit(vars, 1);
 			stk_append(&vars->stk, ft_atoi(vars->arr[i]));
 			i++;
