@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:32:40 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/10 11:33:11 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:01:11 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	ft_isnumber(char *str)
 {
+	if (!*str)
+		return (false);
 	while (*str)
 	{
 		if (!ft_isdigit(*str))

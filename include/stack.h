@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:38:21 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:50:47 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:42:06 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ void				stk_show(t_stack *stk);
 
 int					stk_max(t_stack *stk);
 int					stk_min(t_stack *stk);
-int					stk_index(t_stack *stk, int value);
 int					stk_size(t_stack *stk);
+int					stk_index(t_stack *stk, int value);
+bool				stk_exists(t_stack *stk, int value);
 
 void				stk_rotate(t_stack **stk, t_type type);
 void				stk_rrotate(t_stack **stk, t_type type);

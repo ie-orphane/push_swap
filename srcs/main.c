@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:47:45 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:00:28 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,20 @@ void	ft_exit(t_vars *vars, int status)
 	if (vars->arr)
 		ft_strs_free(&vars->arr);
 	if (status != 0)
-		ft_printf("Error\n");
+		ft_putstr_fd("Error\n", 2);
 	exit(status);
+}
+
+static int	_parse_number(t_vars *vars, char *number)
+{
+	int	num;
+
+	if (!ft_isnumber(number + (number[0] == '+' || number[0] == '-')))
+		ft_exit(vars, 1);
+	num = ft_atoi(number);
+	if (stk_exists(vars->stk, num))
+		ft_exit(vars, 1);
+	return (num);
 }
 
 void	ft_parse(t_vars *vars)
@@ -40,13 +52,9 @@ void	ft_parse(t_vars *vars)
 		vars->arr = ft_split(vars->av[c], ' ');
 		i = 0;
 		while (vars->arr[i])
-		{
-			if (!ft_isnumber(vars->arr[i] + (vars->arr[i][0] == '+'
-					|| vars->arr[i][0] == '-')))
-				ft_exit(vars, 1);
-			stk_append(&vars->stk, ft_atoi(vars->arr[i]));
 			i++;
-		}
+		while (i--)
+			stk_append(&vars->stk, _parse_number(vars, vars->arr[i]));
 		ft_strs_free(&vars->arr);
 	}
 }
@@ -62,7 +70,7 @@ int	main(int ac, char **av)
 	if (!vars.stk || stk_issorted(vars.stk))
 		ft_exit(&vars, 0);
 	if (vars.ac - 1 <= 5)
-		sort_five(&vars.stk);
+		sort_small(&vars.stk);
 	else
 		sort_large(&vars.stk);
 	ft_exit(&vars, 0);

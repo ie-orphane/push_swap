@@ -6,26 +6,29 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:45:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:35:48 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:56:39 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	sort_three(t_stack **stk)
+static void	_sort_mini(t_stack **stk)
 {
 	int	max;
 
-	max = stk_max((*stk));
-	if ((*stk)->value == max)
-		stk_rotate(stk, STACK_A);
-	if ((*stk)->next->value == max)
-		stk_rrotate(stk, STACK_A);
+	if (stk_size(*stk) > 2)
+	{
+		max = stk_max((*stk));
+		if ((*stk)->value == max)
+			stk_rotate(stk, STACK_A);
+		if ((*stk)->next->value == max)
+			stk_rrotate(stk, STACK_A);
+	}
 	if ((*stk)->value > (*stk)->next->value)
 		stk_swap(stk, STACK_A);
 }
 
-void	sort_five(t_stack **stk)
+void	sort_small(t_stack **stk)
 {
 	int		min;
 	t_stack	*tmp;
@@ -46,7 +49,7 @@ void	sort_five(t_stack **stk)
 			stk_rrotate(stk, STACK_A);
 	}
 	if (!stk_issorted(*stk))
-		sort_three(stk);
+		_sort_mini(stk);
 	while (stk_size(tmp) > 0)
 		stk_push(&tmp, stk, STACK_A);
 	stk_clear(&tmp);

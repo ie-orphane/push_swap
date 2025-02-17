@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:11:54 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:50:57 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/13 18:41:51 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,15 @@ int	stk_size(t_stack *stk)
 		stk = stk->next;
 	}
 	return (i);
+}
+
+bool	stk_exists(t_stack *stk, int value)
+{
+	while (stk)
+	{
+		if (stk->value == value)
+			return (true);
+		stk = stk->next;
+	}
+	return (false);
 }
