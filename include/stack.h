@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:38:21 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 18:42:06 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/18 14:54:05 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef enum e_stack
 {
+	STACK_N = 'n',
 	STACK_A = 'a',
 	STACK_B = 'b',
 }					t_type;

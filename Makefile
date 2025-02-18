@@ -16,15 +16,16 @@ SRCS_DIR = srcs
 
 _SRCS = array_1.c array_2.c array_3.c array_4.c \
 		stack_1.c stack_2.c stack_3.c \
-		sort.c utils.c int.c main.c
+		sort.c utils.c int.c parse.c main.c
 SRCS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
-# _SRCS_BONUS =
-# SRCS_BONUS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
+_SRCS_BONUS = stack_1.c stack_2.c stack_3.c \
+			utils.c parse.c actions_bonus.c main_bonus.c
+SRCS_BONUS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 OBJS_DIR = objs
 OBJS = $(addprefix $(OBJS_DIR)/,$(_SRCS:.c=.o))
-# OBJS_BONUS = $(addprefix $(OBJS_DIR)/,$(_SRCS_BONUS:.c=.o))
+OBJS_BONUS = $(addprefix $(OBJS_DIR)/,$(_SRCS_BONUS:.c=.o))
 
 
 INCLUDE_DIR = include
@@ -38,7 +39,7 @@ RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -O3
 IFLAGS =  -I$(INCLUDE_DIR) -I$(LIB)
-LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB)) # -fsanitize=address -g3
+LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB)) -fsanitize=address -g3
 
 DEV_NULL = 1> /dev/null
 NO_PRINT = --no-print-directory
@@ -60,12 +61,11 @@ $(LIB):
 	@$(MAKE) -C $@ $(DEV_NULL)
 	@echo "🏗️  $(MAGENTA)$@$(RESET)"
 
-# bonus: $(BONUS)
+bonus: $(BONUS)
 
-# $(BONUS): $(LIB_FILES) $(OBJS_BONUS)
-# 	@echo "🔗 $(CYAN)$(notdir $(OBJS_BONUS)) $(BLACK)=> $(YELLOW)$(NAME)$(RESET)"
-# 	@touch $(BONUS)
-# 	@$(CC) $(OBJS_BONUS) $(LIB_FLAGS) -o $(NAME)
+$(BONUS): $(LIB) $(OBJS_BONUS)
+	@echo "🔗 $(CYAN)$(notdir $(OBJS_BONUS)) $(BLACK)=> $(YELLOW)$(BONUS)$(RESET)"
+	@$(CC) $(OBJS_BONUS) $(LFLAGS) -o $(BONUS)
 
 clean :
 	@$(MAKE) -C $(LIB) clean $(DEV_NULL)
@@ -75,7 +75,7 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME) $(BONUS)
-	@echo "🧹 $(BLACK)$(NAME)$(RESET)"
+	@echo "🧹 $(BLACK)$(NAME) $(BONUS)$(RESET)"
 	@$(MAKE) -C $(LIB) fclean $(DEV_NULL)
 
 re : fclean all
@@ -90,14 +90,18 @@ count :
 check :
 	@$(MAKE) $(NO_PRINT) run | ./checker_linux $(ARGS)
 
-exe :
+m :
 	@$(MAKE) $(NO_PRINT) run
 	@echo "---"
 	@$(MAKE) $(NO_PRINT) count
 	@$(MAKE) $(NO_PRINT) check
 
+b :
+	@$(MAKE) bonus $(NO_PRINT) $(DEV_NULL)
+	@./$(BONUS) $(ARGS)
+
 valgrind :
 	@$(MAKE) $(NO_PRINT) $(DEV_NULL)
 	@valgrind ./$(NAME) $(ARGS)
 
-.PHONY : all clean fclean re $(LIB) run count check exe
+.PHONY : all clean fclean re $(LIB) run count check m b

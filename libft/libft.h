@@ -6,13 +6,14 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 09:05:25 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/01/23 17:46:33 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/18 13:34:46 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdbool.h>
@@ -21,6 +22,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+# define BUFFER_SIZE 1
 
 void				ft_putchar(int *count, const char c);
 void				ft_putstr(int *count, const char *s);
@@ -88,5 +91,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+char				*get_next_line(int fd);
 
 #endif
