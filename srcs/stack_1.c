@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:11:54 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 09:51:00 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/19 10:51:22 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	stk_pop(t_stack **stk)
 
 bool	stk_issorted(t_stack *stk)
 {
+	if (!stk)
+		return (true);
 	while (stk->next)
 	{
 		if (stk->value > stk->next->value)

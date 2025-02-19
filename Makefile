@@ -20,7 +20,7 @@ _SRCS = array_1.c array_2.c array_3.c array_4.c \
 SRCS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 _SRCS_BONUS = stack_1.c stack_2.c stack_3.c \
-			utils.c parse.c actions_bonus.c main_bonus.c
+			utils.c parse.c action_bonus.c main_bonus.c
 SRCS_BONUS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 OBJS_DIR = objs
@@ -33,13 +33,14 @@ _INCLUDES = main.h ansi.h array.h int.h stack.h
 INCLUDES = $(addprefix $(INCLUDE_DIR)/,$(_INCLUDES))
 
 LIB = libft
+LIB_FILE = libft/libft.a
 
 CC = cc
 RM = rm -rf
 
 CFLAGS = -Wall -Wextra -Werror -O3
 IFLAGS =  -I$(INCLUDE_DIR) -I$(LIB)
-LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB)) -fsanitize=address -g3
+LFLAGS = -L$(LIB) -l$(subst lib,,$(LIB)) # -fsanitize=address -g3
 
 DEV_NULL = 1> /dev/null
 NO_PRINT = --no-print-directory
@@ -47,7 +48,7 @@ NO_PRINT = --no-print-directory
 
 all : $(NAME)
 
-$(NAME): $(LIB) $(OBJS)
+$(NAME): $(LIB_FILE) $(OBJS)
 	@$(CC) $(OBJS) $(LFLAGS) -o $(NAME)
 	@echo "🔗 $(CYAN)$(notdir $(OBJS)) $(BLACK)=> $(YELLOW)$(NAME)$(RESET)"
 
@@ -57,13 +58,13 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCLUDES)
 	@$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 	@echo "🔨 $(BLUE)$(notdir $<) $(BLACK)=> $(CYAN)$(notdir $@)$(RESET)"
 
-$(LIB):
-	@$(MAKE) -C $@ $(DEV_NULL)
+$(LIB_FILE):
+	@$(MAKE) -C $(LIB) $(DEV_NULL)
 	@echo "🏗️  $(MAGENTA)$@$(RESET)"
 
 bonus: $(BONUS)
 
-$(BONUS): $(LIB) $(OBJS_BONUS)
+$(BONUS): $(LIB_FILE) $(OBJS_BONUS)
 	@echo "🔗 $(CYAN)$(notdir $(OBJS_BONUS)) $(BLACK)=> $(YELLOW)$(BONUS)$(RESET)"
 	@$(CC) $(OBJS_BONUS) $(LFLAGS) -o $(BONUS)
 
@@ -104,4 +105,4 @@ valgrind :
 	@$(MAKE) $(NO_PRINT) $(DEV_NULL)
 	@valgrind ./$(NAME) $(ARGS)
 
-.PHONY : all clean fclean re $(LIB) run count check m b
+.PHONY : all clean fclean re run count check m b valgrind

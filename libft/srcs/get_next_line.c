@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:21:33 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/17 18:07:46 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:13:24 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ char	*get_next_line(int fd)
 	ssize_t		bytes_read;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (ft_free(&stash, NULL));
 	buffer = malloc(((size_t)BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
-		return (NULL);
+		return (ft_free(&stash, NULL));
 	while (1)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);

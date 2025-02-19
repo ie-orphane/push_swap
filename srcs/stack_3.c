@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:47:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/18 14:55:54 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/19 10:49:26 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	stk_rotate(t_stack **stk, t_type type)
 	t_stack	*last;
 	t_stack	*head;
 
-	if (!stk || !*stk)
+	if (!stk || !*stk || !(*stk)->next)
 		return ;
 	last = (*stk);
 	while (last->next)
@@ -37,7 +37,7 @@ void	stk_rrotate(t_stack **stk, t_type type)
 	t_stack	*last;
 	t_stack	*tail;
 
-	if (!stk || !*stk)
+	if (!stk || !*stk || !(*stk)->next)
 		return ;
 	last = (*stk);
 	while (last->next)
@@ -56,7 +56,7 @@ void	stk_swap(t_stack **stk, t_type type)
 {
 	t_stack	*tmp;
 
-	if (!stk || !*stk)
+	if (!stk || !*stk || !(*stk)->next)
 		return ;
 	tmp = (*stk)->next;
 	(*stk)->next = tmp->next;

@@ -6,15 +6,17 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:21:30 by ielyatim          #+#    #+#             */
-/*   Updated: 2024/10/23 14:26:55 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:08:31 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+#include "libft.h"
+
+long	ft_atoi(const char *nptr)
 {
-	int	nbr;
-	int	i;
-	int	sign;
+	long	nbr;
+	size_t	i;
+	long	sign;
 
 	i = 0;
 	nbr = 0;
