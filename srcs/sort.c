@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:45:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/13 18:56:39 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:52:30 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,13 @@ void	sort_large(t_stack **stk)
 	size_t	size;
 	size_t	end;
 
-	end = 2;
+	size = stk_size(*stk);
+	if (size <= 100)
+		end = size / 5;
+	else if (size <= 500)
+		end = size / 13;
+	else
+		end = size / 20;
 	_sort_large(stk, &tmp, &end);
 	while (tmp)
 	{

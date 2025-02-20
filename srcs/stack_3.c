@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:47:07 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/19 10:49:26 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:00:57 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	stk_push(t_stack **stk1, t_stack **stk2, t_type type)
 		return ;
 	tmp = (*stk1)->next;
 	(*stk1)->next = *stk2;
+	if (*stk2)
+		(*stk2)->prev = *stk1;
 	*stk2 = *stk1;
 	*stk1 = tmp;
 	if (type != STACK_N)
