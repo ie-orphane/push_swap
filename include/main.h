@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:01 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/18 23:21:17 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:04:27 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ t_action	get_action(char *action);
 void		exe_action(t_stack **stk_a, t_stack **stk_b, t_action action);
 
 void		sort_small(t_stack **stk);
-void		sort_large(t_stack **stk);
+void		sort_large(t_stack **stk, size_t *end);
 
 #endif // MAIN_H

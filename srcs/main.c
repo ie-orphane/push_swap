@@ -6,7 +6,7 @@
 /*   By: ielyatim <ielyatim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 12:41:05 by ielyatim          #+#    #+#             */
-/*   Updated: 2025/02/18 23:30:51 by ielyatim         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:03:42 by ielyatim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	main(int ac, char **av)
 {
 	t_vars	vars;
+	size_t	size;
+	size_t	end;
 
 	ft_bzero(&vars, sizeof(vars));
 	vars.ac = ac;
@@ -25,6 +27,15 @@ int	main(int ac, char **av)
 	if (vars.ac - 1 <= 5)
 		sort_small(&vars.stk);
 	else
-		sort_large(&vars.stk);
+	{
+		size = stk_size(vars.stk);
+		if (size <= 100)
+			end = size / 5;
+		else if (size <= 500)
+			end = size / 13;
+		else
+			end = size / 20;
+		sort_large(&vars.stk, &end);
+	}
 	ft_exit(&vars, 0);
 }
