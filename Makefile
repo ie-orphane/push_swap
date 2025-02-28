@@ -17,11 +17,9 @@ SRCS_DIR = srcs
 _SRCS = array_1.c array_2.c array_3.c array_4.c \
 		stack_1.c stack_2.c stack_3.c \
 		sort.c utils.c int.c parse.c main.c
-SRCS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 _SRCS_BONUS = stack_1.c stack_2.c stack_3.c \
 			utils.c parse.c action_bonus.c main_bonus.c
-SRCS_BONUS = $(addprefix $(SRCS_DIR)/,$(_SRCS_BONUS))
 
 OBJS_DIR = objs
 OBJS = $(addprefix $(OBJS_DIR)/,$(_SRCS:.c=.o))
